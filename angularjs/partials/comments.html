@@ -1,0 +1,74 @@
+<ul class="breadcrumb">
+	<li><a href="#/">Articles</a></li>
+	<li class="active">{{title}}</li>
+</ul>
+
+
+	
+
+
+<div ng-hide="loading">
+
+
+<ng-tabs>
+	
+
+			<ng-tab title="Article">
+
+					<h1>{{title}}</h1>
+
+					<p>{{content}}</p>
+
+					<h3>{{comments.length}} Commentaires</h3>
+			</ng-tab>
+
+
+			<ng-tab title="{{comments.length}} Commentaires">
+					
+					<div class="form-group">
+					 	<input class="form-control datepicker" type="text" placeholder="Date" datepicker-options="{today : 'Aujourdhui'}">
+					</div>
+
+
+					<div ng-test username="newComment.username">
+						<div ng-repeat="comment2 in comments | filter : {content : query} | orderBy : order">
+							<ng-comment comment = "comment2" select = "selectComment()"></ng-comment>
+						</div>
+					</div>
+
+			</ng-tab>
+
+</ng-tabs>
+
+
+
+
+
+		<time></time>
+	
+
+
+		<hr>
+
+	 <form ng-submit="addComment() ">
+	 	<h3>Ajouter un commentaire</h3>
+
+	 	<div class="form-group">
+	 		<input class="form-control" type="text" placeholder="username" ng-model="newComment.username">
+	 	</div>
+
+	 	<div class="form-group">
+	 		<input class="form-control" type="text" placeholder="city" ng-model="newComment.city">
+	 	</div>
+
+	 	 <div class="form-group">
+	 	 	<input class="form-control" type="text" placeholder="email" ng-model="newComment.email">
+	 	 </div>
+
+		 <div class="form-group">
+		 	<textarea class="form-control" ng-model="newComment.content"></textarea>
+		 </div>
+	 	
+	 	<input type="submit" class="btn btn-primary btn-sm" value="Envoyer">
+	 </form>
+</div>
